@@ -14,7 +14,7 @@ before_install:
 script:
 - find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|' -i
 - make test
-- for XC_OS in darwin linux windows; do for XC_ARCH in amd64; do make $XC_OS/$XC_ARCH; done; done
+- CGO_ENABLED=0; for XC_OS in darwin linux windows; do for XC_ARCH in amd64; do export GOOS=$XC_OS; ext=""; if test $XC_OS = "windows"; then ext=".exe"; fi ; export GOARCH=$XC_ARCH; go build -o="pkg/${XC_OS}_${XC_ARCH}/consul-template${ext}" -a -ldflags "${LD_FLAGS}" -tags "${GOTAGS}"; done done
 deploy:
   provider: releases
   api_key:
