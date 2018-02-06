@@ -15,7 +15,7 @@ script:
 - find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|'
   -i
 - make test
-- make dev
+- export XC_OS=linux; export XC_ARCH=amd64 ; make dev
 - find . -type f
 deploy:
   provider: releases
