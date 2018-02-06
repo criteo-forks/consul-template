@@ -9,11 +9,6 @@ go:
 env:
   - GOMAXPROCS=4
 
-branches:
-  only:
-    - travis_criteo
-    - criteo
-
 env:
   - CONSUL_VERSION=1.0.0
 
