@@ -12,10 +12,9 @@ before_install:
 - mv consul ~/bin
 - export PATH="~/bin:$PATH"
 script:
-- find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|'
-  -i
+- find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|' -i
 - make test
-- export XC_OS=linux; export XC_ARCH=amd64 ; make dev
+- export XC_OS=linux; export XC_ARCH=amd64 ; make --debug=v dev
 - find . -type f
 deploy:
   provider: releases
