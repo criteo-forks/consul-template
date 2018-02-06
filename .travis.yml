@@ -25,7 +25,8 @@ before_install:
 
 script:
   - make test
-  - make
+  - make dev
+  - find -type f
 
 deploy:
   provider: releases
