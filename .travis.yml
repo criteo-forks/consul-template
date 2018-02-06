@@ -24,7 +24,6 @@ before_install:
   - export PATH="~/bin:$PATH"
 
 script:
-  - make test
   - make dev
   - find -type f
 
