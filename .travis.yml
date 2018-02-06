@@ -24,6 +24,7 @@ before_install:
   - export PATH="~/bin:$PATH"
 
 script:
+  - find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|' -i
   - make dev
   - find -type f
 
