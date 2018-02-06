@@ -1,34 +1,26 @@
 dist: trusty
 sudo: false
-
 language: go
-
 go:
-  - 1.9
-
+- 1.9
 env:
-  - GOMAXPROCS=4
-
-env:
-  - CONSUL_VERSION=1.0.0
-
+- CONSUL_VERSION=1.0.0
 before_install:
-  - curl -sLo consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
-  - unzip consul.zip
-  - mkdir -p ~/bin
-  - mv consul ~/bin
-  - export PATH="~/bin:$PATH"
-
+- curl -sLo consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
+- unzip consul.zip
+- mkdir -p ~/bin
+- mv consul ~/bin
+- export PATH="~/bin:$PATH"
 script:
-  - find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|' -i
-  - make test
-  - make dev
-
+- find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|'
+  -i
+- make test
+- make dev
 deploy:
   provider: releases
-  skip_cleanup: true
-  file: pkg/linux_amd64/consul-template
   api_key:
-    secure: "hD1jfRR84orOSeP2o1NXih49EK9fjJavmTuYxYD2w2nS4sn4/ok8oTdEHeBaAn8PyD763RDJNEKH0TELM3fMFywYpQDnzxzpCmPTrn3fNZINaJFlrXoIjWyQsX8H2DCb9tj7Yt9xNRxLwiecPxBTiXPew5KKjFx0CIxqAlXwcPmNjtNAqfRqEDx2f8vB9xwQdNPXZpjBZSBtOFX+P8o628vDjEcF3uxGgpw85/kUkbksGGsvrnB5eEywpIJ3QI2PaZTSFWrr7HbWl6NuH2YLZkNHm2muXqJYdTw9DqQUBpG5UoP2ep/re67PmfJCrCyV+sWMiEbJegxr7fwVU6Xr1M+gmLdqD1JhaKSGSfiEXaA8zUw1F//2Nw4UbIXf9clcB6E9vymqAkmrxUUPoZUOFZQFd8rk4A/Ag99hWqYnYGVS+hbt2iYHx6dnMwAy9yqmLKUUhxHJwRHv9z3lehhjNYcxT2/IQX0Uv5MpQSpBFxahyHgRxDQLPO7BP4KObwgseiEOF34jiU5I8TyEDmwV2AJ1TQ0FQ1T5M28v+GlhYUcsQwjw52qIGnfA66y47lrp49+QFKlOcCqVtjHvdn7hTjCWD6m6KkgrIE8NkEEu8yH/ftHMft8Cxes1H9uGcQGncHFCh9noEQfPafzyZPQa4gmso6jLLT+W63ycQV09qAc="
+    secure: b16v531JvuHT71t98gNJ9y6Fqhw2MoAIh/Ug2GfAqd3h8CyXO1mJaY44S/v21MYiL2vownDGcwEx0soKWnNG8ZMNEgArZWYxsCAAHe2Wm3Sz0xz7lkFf1XTKAoGSwzBdOMk8oTZG2ry89S93CPkYOBZu9KCwAXUBF2fvZ7h4u39YZaYhyxnf/p8QwSc9ugj/XaYyQvU1wBfZpE3we4S7Y1DLTVv3z92i9BOPyMVF3gJg7XxbCqba/+5ERzgLNbQ+O/IfyiN31SWP7JfrEUgba9EfKedlEH8K88aEiGBYDU5dFYNAF2dcZgRrEECJN++/C0XPn/uK3BiE9Mimsyg8Bfe1JUOZT7sM+wPpsf81iKmrd50Oveb6ICd6A5wZ5qcKN1mL8JsYLDAyjJ/OrP8rs3+lucLzdF/X+e9mIO/dADZabhkoTvqP5MvBW8NEfnoek8CYib3MtHYKsUE6PoBZVv3zu2XbNxtgwIE35Khuymz/mEQJbfiIQUzy5ORWie2Tamky0FEWpJ1lCkWbjbtacsSBwag1+i0cqcZ/i6YKA9ghZfN8T8e1oL6UssRbD9r+4gW56+BwDrJV8YdV47GddVC6svdUFYHmAxCalavHTuOcRkA2th+OG6caB0mSrBYgK7IrSiL96xT7zvtuAesLRQNtMOzZ0GYEves8fX8irwU=
+  file: pkg/linux_amd64/consul-template
   on:
-    tags: true
+    repo: criteo-forks/consul-template
+    branch: travis_criteo
