@@ -11,7 +11,7 @@ env:
 
 branches:
   only:
-    - master
+    - travis_criteo
 
 env:
   - CONSUL_VERSION=1.0.0
@@ -23,4 +23,15 @@ before_install:
   - mv consul ~/bin
   - export PATH="~/bin:$PATH"
 
-script: make test
+script:
+  - make test
+  - make
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file: pkg/linux_amd64/consul-template
+  api_key:
+    secure: "hD1jfRR84orOSeP2o1NXih49EK9fjJavmTuYxYD2w2nS4sn4/ok8oTdEHeBaAn8PyD763RDJNEKH0TELM3fMFywYpQDnzxzpCmPTrn3fNZINaJFlrXoIjWyQsX8H2DCb9tj7Yt9xNRxLwiecPxBTiXPew5KKjFx0CIxqAlXwcPmNjtNAqfRqEDx2f8vB9xwQdNPXZpjBZSBtOFX+P8o628vDjEcF3uxGgpw85/kUkbksGGsvrnB5eEywpIJ3QI2PaZTSFWrr7HbWl6NuH2YLZkNHm2muXqJYdTw9DqQUBpG5UoP2ep/re67PmfJCrCyV+sWMiEbJegxr7fwVU6Xr1M+gmLdqD1JhaKSGSfiEXaA8zUw1F//2Nw4UbIXf9clcB6E9vymqAkmrxUUPoZUOFZQFd8rk4A/Ag99hWqYnYGVS+hbt2iYHx6dnMwAy9yqmLKUUhxHJwRHv9z3lehhjNYcxT2/IQX0Uv5MpQSpBFxahyHgRxDQLPO7BP4KObwgseiEOF34jiU5I8TyEDmwV2AJ1TQ0FQ1T5M28v+GlhYUcsQwjw52qIGnfA66y47lrp49+QFKlOcCqVtjHvdn7hTjCWD6m6KkgrIE8NkEEu8yH/ftHMft8Cxes1H9uGcQGncHFCh9noEQfPafzyZPQa4gmso6jLLT+W63ycQV09qAc="
+  on:
+tags: true
