@@ -14,15 +14,14 @@ before_install:
 script:
 - find . -type f -name "*go" | xargs sed 's|github.com/hashicorp/consul-template|github.com/criteo-forks/consul-template|' -i
 - make test
-- CGO_ENABLED=0; for XC_OS in darwin linux windows; do for XC_ARCH in amd64; do export GOOS=$XC_OS; ext=""; if test $XC_OS = "windows"; then ext=".exe"; fi ; export GOARCH=$XC_ARCH; go build -o="${GOPATH}/pkg/${XC_OS}_${XC_ARCH}/consul-template${ext}" -a -ldflags "${LD_FLAGS}" -tags "${GOTAGS}"; done done
-- find $GOPATH -name 'consul-template*'
+- CGO_ENABLED=0; for XC_OS in darwin linux windows; do for XC_ARCH in amd64; do export GOOS=$XC_OS; ext=""; if test $XC_OS = "windows"; then ext=".exe"; fi ; export GOARCH=$XC_ARCH; go build -o="${GOPATH}/pkg/${XC_OS}-${XC_ARCH}-consul-template${ext}" -a -ldflags "${LD_FLAGS}" -tags "${GOTAGS}"; done done
 deploy:
   provider: releases
   api_key:
     secure: b16v531JvuHT71t98gNJ9y6Fqhw2MoAIh/Ug2GfAqd3h8CyXO1mJaY44S/v21MYiL2vownDGcwEx0soKWnNG8ZMNEgArZWYxsCAAHe2Wm3Sz0xz7lkFf1XTKAoGSwzBdOMk8oTZG2ry89S93CPkYOBZu9KCwAXUBF2fvZ7h4u39YZaYhyxnf/p8QwSc9ugj/XaYyQvU1wBfZpE3we4S7Y1DLTVv3z92i9BOPyMVF3gJg7XxbCqba/+5ERzgLNbQ+O/IfyiN31SWP7JfrEUgba9EfKedlEH8K88aEiGBYDU5dFYNAF2dcZgRrEECJN++/C0XPn/uK3BiE9Mimsyg8Bfe1JUOZT7sM+wPpsf81iKmrd50Oveb6ICd6A5wZ5qcKN1mL8JsYLDAyjJ/OrP8rs3+lucLzdF/X+e9mIO/dADZabhkoTvqP5MvBW8NEfnoek8CYib3MtHYKsUE6PoBZVv3zu2XbNxtgwIE35Khuymz/mEQJbfiIQUzy5ORWie2Tamky0FEWpJ1lCkWbjbtacsSBwag1+i0cqcZ/i6YKA9ghZfN8T8e1oL6UssRbD9r+4gW56+BwDrJV8YdV47GddVC6svdUFYHmAxCalavHTuOcRkA2th+OG6caB0mSrBYgK7IrSiL96xT7zvtuAesLRQNtMOzZ0GYEves8fX8irwU=
   file:
-  - ${GOPATH}/pkg/darwin_amd64/consul-template
-  - ${GOPATH}/pkg/linux_amd64/consul-template
-  - ${GOPATH}/pkg/windows_amd64/consul-template.exe
+  - ${GOPATH}/pkg/darwin-amd64-consul-template
+  - ${GOPATH}/pkg/linux-amd64-consul-template
+  - ${GOPATH}/pkg/windows-amd64-consul-template.exe
   on:
     tags: true
