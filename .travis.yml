@@ -25,8 +25,8 @@ deploy:
   api_key:
     secure: b16v531JvuHT71t98gNJ9y6Fqhw2MoAIh/Ug2GfAqd3h8CyXO1mJaY44S/v21MYiL2vownDGcwEx0soKWnNG8ZMNEgArZWYxsCAAHe2Wm3Sz0xz7lkFf1XTKAoGSwzBdOMk8oTZG2ry89S93CPkYOBZu9KCwAXUBF2fvZ7h4u39YZaYhyxnf/p8QwSc9ugj/XaYyQvU1wBfZpE3we4S7Y1DLTVv3z92i9BOPyMVF3gJg7XxbCqba/+5ERzgLNbQ+O/IfyiN31SWP7JfrEUgba9EfKedlEH8K88aEiGBYDU5dFYNAF2dcZgRrEECJN++/C0XPn/uK3BiE9Mimsyg8Bfe1JUOZT7sM+wPpsf81iKmrd50Oveb6ICd6A5wZ5qcKN1mL8JsYLDAyjJ/OrP8rs3+lucLzdF/X+e9mIO/dADZabhkoTvqP5MvBW8NEfnoek8CYib3MtHYKsUE6PoBZVv3zu2XbNxtgwIE35Khuymz/mEQJbfiIQUzy5ORWie2Tamky0FEWpJ1lCkWbjbtacsSBwag1+i0cqcZ/i6YKA9ghZfN8T8e1oL6UssRbD9r+4gW56+BwDrJV8YdV47GddVC6svdUFYHmAxCalavHTuOcRkA2th+OG6caB0mSrBYgK7IrSiL96xT7zvtuAesLRQNtMOzZ0GYEves8fX8irwU=
   file:
-  - ${GOPATH}/pkg/consul-template_${TRAVIS_COMMIT}_darwin-amd64.tgz
-  - ${GOPATH}/pkg/consul-template_${TRAVIS_COMMIT}_linux-amd64.tgz
-  - ${GOPATH}/pkg/consul-template_${TRAVIS_COMMIT}_windows-amd64.tgz
+  - ${GOPATH}/pkg/darwin-amd64/consul-template_${TRAVIS_COMMIT}_darwin-amd64.tgz
+  - ${GOPATH}/pkg/linux-amd64/consul-template_${TRAVIS_COMMIT}_linux-amd64.tgz
+  - ${GOPATH}/pkg/windows-amd64/consul-template_${TRAVIS_COMMIT}_windows-amd64.tgz
   on:
     tags: true
